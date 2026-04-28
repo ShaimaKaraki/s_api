@@ -1,10 +1,10 @@
 require "net/http"
 require "net/https"
 
-module ApiSabeqPsV1
+module ApiDemoV1
   module SabeqHelpers
     REQUEST_HEADER = {'Content-Type' => 'application/json'}
-    SABEQ_URL = "https://sabeq.ps"
+    SABEQ_URL = "http://localhost:3000/"
 
     # Authorize the request
     # parameters: login_token
@@ -56,7 +56,7 @@ module ApiSabeqPsV1
       uri.query = URI.encode_www_form(params)
 
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
+      http.use_ssl = false
 
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
@@ -146,7 +146,7 @@ module ApiSabeqPsV1
       def make_post_request(url_link, json_content)
         uri = URI.parse(url_link)
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+        http.use_ssl = false
         a_request = Net::HTTP::Post.new(uri.request_uri, REQUEST_HEADER)
         a_request.body = json_content.to_json
         a_response = http.request(a_request)
@@ -156,7 +156,7 @@ module ApiSabeqPsV1
       def make_get_request(url_link, json_content)
         uri = URI.parse(url_link)
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+        http.use_ssl = false
         the_params = json_content
         uri.query = URI.encode_www_form(the_params)
         a_request = Net::HTTP::Get.new(uri.request_uri)
@@ -167,7 +167,7 @@ module ApiSabeqPsV1
       def make_patch_request(url_link, json_content)
         uri = URI.parse(url_link)
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+        http.use_ssl = false
         a_request = Net::HTTP::Patch.new(uri.request_uri, REQUEST_HEADER)
         a_request.body = json_content.to_json
         a_response = http.request(a_request)

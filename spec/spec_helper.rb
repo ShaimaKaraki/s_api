@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "api_sabeq_ps_v1"
+require "api_demo_v1"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
